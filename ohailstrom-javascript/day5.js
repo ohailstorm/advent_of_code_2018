@@ -15,10 +15,13 @@ const part2 = input =>
   Math.min(
     ...input
       .split("")
-      .reduce((obj, val) => {
-        if (!obj.includes(val.toLowerCase())) obj.push(val.toLowerCase());
-        return obj;
-      }, [])
+      .reduce(
+        (obj, val) =>
+          !obj.includes(val.toLowerCase())
+            ? (obj.push(val.toLowerCase()), obj)
+            : obj,
+        []
+      )
       .map(letter =>
         input
           .split("")
